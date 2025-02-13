@@ -1,0 +1,176 @@
+@font-face {
+    font-family: letter_font;
+    src: url(fonts/ofont.ru_Kontrabanda.ttf);
+}
+
+@font-face {
+    font-family: timer_text_font;
+    src: url(fonts/ofont.ru_Sriracha.ttf);
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ff4d4d;
+    color: white;
+    text-align: center;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    padding-top:555px;
+}
+
+/* Контейнер для сердечек */
+@keyframes floatingHearts {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+    }
+}
+.content {
+    margin-top: 80px; /* Отступ, чтобы контент не перекрывался навигационной панелью */
+}
+
+.hearts-container {
+    position: fixed; /* Сердечки теперь не скроллятся */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Чтобы клики не мешали */
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    opacity: 0.8;
+    animation: floatingHearts 5s linear infinite;
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto; /* Обеспечивает вертикальную прокрутку */
+}
+
+/* Галерея теперь занимает всю доступную ширину */
+.gallery-container {
+    max-width: 90vw;
+    margin: 0 auto;
+    padding: 20px;
+    overflow-y: auto; /* Включает прокрутку при необходимости */
+}
+
+/* Адаптивное размещение фото */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Фото заполняют пространство */
+    gap: 10px;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+/* Стили для изображений */
+.gallery img {
+    width: 100%;
+    height: 200px; /* Фиксированная высота */
+    object-fit: cover; /* Обрезка фото для равномерности */
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+
+/* Верхняя белая панель */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #FFC0CB;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+/* Сердечки по бокам */
+.side-hearts {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    pointer-events: none;
+}
+
+.left-hearts {
+    left: 10px;
+}
+
+.right-hearts {
+    right: 10px;
+}
+
+.letter-container {
+    width: 70%;
+    max-width: 800px;
+    background: #fae79d;
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    font-family: letter_font;
+    text-align: center;
+    line-height: 1.6;
+    color:black;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+/* Контейнер таймера по центру */
+.timer-container {
+    width: 60%;
+    max-width: 500px;
+    background: #fffdf5;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    font-family: timer_text_font;
+    text-align: center;
+    line-height: 1.6;
+    font-size: 24px;
+    color: black;
+    
+    /* Центрируем */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Сам таймер */
+#timer {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ff4d6d;
+}
+
+
