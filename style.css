@@ -116,13 +116,7 @@ html, body {
     pointer-events: none;
 }
 
-.left-hearts {
-    left: 10px;
-}
 
-.right-hearts {
-    right: 10px;
-}
 
 .letter-container {
     width: 70%;
