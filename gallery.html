@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Верхняя белая панель -->
+    <nav class="navbar">
+        <a href="index.html">Главная</a>
+        <a href="gallery.html">Галерея</a>
+        <a href="timer.html">Таймер</a>
+    </nav>
+
+
+
+
+    <div class="gallery-container">
+        <h1>Снизу фотки моей любимой и самой красивой девочки </h1>
+        <div class="gallery">
+            
+        </div>
+    </div>
+
+    <script>
+        const imageFolder = "images"; // Папка с фото
+        const imageCount = 199; // Количество фото
+        const gallery = document.querySelector(".gallery");
+    
+        for (let i = 1; i <= imageCount; i++) {
+            const img = document.createElement("img");
+            img.dataset.src = `${imageFolder}/${i}.jpg`; // Используем data-src вместо src
+            img.alt = `Фото ${i}`;
+            img.classList.add("lazy"); // Добавляем класс для ленивой загрузки
+            gallery.appendChild(img);
+        }
+    
+        // Ленивая загрузка
+        document.addEventListener("DOMContentLoaded", function () {
+            const lazyImages = document.querySelectorAll(".lazy");
+    
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src; // Подгружаем изображение
+                        img.classList.remove("lazy");
+                        observer.unobserve(img); // Отключаем слежение за загруженным изображением
+                    }
+                });
+            });
+    
+            lazyImages.forEach(img => observer.observe(img));
+        });
+    </script>
+    
+    
+    <div class="hearts-container"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const heartsContainer = document.createElement("div");
+            heartsContainer.classList.add("hearts-container");
+            document.body.appendChild(heartsContainer);
+    
+            function createHeart() {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDuration = `${3 + Math.random() * 3}s`;
+                heart.style.fontSize = `${15 + Math.random() * 20}px`;
+                heartsContainer.appendChild(heart);
+    
+                setTimeout(() => heart.remove(), 6000);
+            }
+    
+            setInterval(createHeart, 500);
+        });
+    </script>
+    
+
+</body>
+</html>
